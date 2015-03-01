@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguiter <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/03/01 12:30:43 by tguiter           #+#    #+#             */
+/*   Updated: 2015/03/01 12:30:52 by tguiter          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ncurses.h>
 
 void	draw_borders(WINDOW *screen);
@@ -13,7 +25,7 @@ int		main(int argc, char *argv[])
 	getmaxyx(stdscr, parent_y, parent_x);
 	WINDOW *field = newwin(parent_y, parent_x, 0, 0);
 	draw_borders(field);
-	while(1)
+	while(42)
 	{
 		getmaxyx(stdscr, new_y, new_x);
 		if (new_y != parent_y || new_x != parent_x)
