@@ -73,74 +73,81 @@ void	ft_random(t_env *e)
 		ft_random(e);
 }
 
+static void	call(t_env *e)
+{
+	if (KEY_DOWN == e->o)
+	{
+		in_bot(e);
+		if (e->all > 0)
+			ft_random(e);
+	}
+	if (KEY_UP == e->o)
+	{
+		in_top(e);
+		if (e->all > 0)
+		ft_random(e);
+	}
+	if (KEY_LEFT == e->o)
+	{
+		in_left(e);
+		if (e->all > 0)
+			ft_random(e);
+		}
+	if (KEY_RIGHT == e->o)
+	{
+		in_right(e);
+		if (e->all > 0)
+			ft_random(e);
+	}
+}
+
+static void	affichage(t_env *e)
+{
+	int k;
+	int j;
+
+	clear();
+	k = 0;
+	while (k != 4)
+	{
+		j = 0;
+		while (j != 4)
+		{
+			printw("%d		", e->tab[k][j]);
+			j++;
+		}
+		printw("\n");
+		k++;
+	}
+	refresh();
+	e->o = 0;
+}
+
 int		main(void)
 {
 	t_env	e;
-	int		j;
-	int		k;
 	int		n;
-	int		o;
 
 	initscr();
 	ft_test(&e);
 	keypad(stdscr, TRUE);
 	srand(time(NULL));
-	n = 0;
+	n = -1;
 	e.all = 0;
-	while (n < 2)
-	{
+	while (++n < 2)
 		ft_random(&e);
-		n++;
-	}
-	while (1)
+	while (42)
 	{
-		o = getch();
-		if (KEY_DOWN == o)
-		{
-			in_bot(&e);
-			if (e.all > 0)
-				ft_random(&e);
-		}
-		if (KEY_UP == o)
-		{
-			in_top(&e);
-			if (e.all > 0)
-				ft_random(&e);
-		}
-		if (KEY_LEFT == o)
-		{
-			in_left(&e);
-			if (e.all > 0)
-				ft_random(&e);
-		}
-		if (KEY_RIGHT == o)
-		{
-			in_right(&e);
-			if (e.all > 0)
-				ft_random(&e);
-		}
-		if (o != 0)
-		{
-			clear();
-			k = 0;
-			while (k != 4)
-			{
-				j = 0;
-				while (j != 4)
-				{
-					printw("%d    ", e.tab[k][j]);
-					j++;
-				}
-				printw("\n");
-			k++;
-			}
-			refresh();
-			o = 0;
-		}
+		e.o = getch();
+		call(&e);
+		if (e.o == ESCAPE)
+			break ;
+		if (e.o != 0)
+			affichage(&e);
 		printw("\n");
 		refresh();
 	}
-	getch();
+//	getch();
 	endwin();
 	return (0);
 }

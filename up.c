@@ -14,7 +14,8 @@
 
 static void		extend_up(t_env *e, t_var *v)
 {
-	if (e->tab[v->i][v->j] == e->tab[v->i - 1][v->j] && e->tab[v->i][v->j] != 0 && v->c == 0 && v->i - 1 > -1)
+	if (e->tab[v->i][v->j] == e->tab[v->i - 1][v->j] && e->tab[v->i][v->j] != 0
+		&& v->c == 0 && v->i - 1 > -1)
 	{
 		e->tab[v->i - 1][v->j] *= 2;
 		e->tab[v->i][v->j] = 0;

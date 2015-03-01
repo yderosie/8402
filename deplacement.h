@@ -21,11 +21,32 @@
 # include <string.h>
 # include <stdio.h>
 
+enum e_const
+{
+	ESCAPE = 27,
+	WIN_VALEUR = 2048
+};
+
+typedef struct	s_var
+{
+	int i;
+	int j;
+	int k;
+	int c;
+}				t_var;
+
 typedef struct	s_env
 {
 	int		tab[4][4];
 	int		all;
+	int 	o;
 }				t_env;
+
+void	ft_random(t_env *e);
+void	in_bot(t_env *e);
+void	in_right(t_env *e);
+void	in_left(t_env *e);
+void	in_top(t_env *e);
 
 #endif
 

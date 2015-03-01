@@ -14,7 +14,8 @@
 
 static void		extenf_right(t_env *e, t_var *v)
 {
-	if (e->tab[v->i][v->j] == e->tab[v->i][v->j + 1] && e->tab[v->i][v->j] != 0 && v->c == 0 && v->j + 1 < 4)
+	if (e->tab[v->i][v->j] == e->tab[v->i][v->j + 1] && e->tab[v->i][v->j] != 0
+		&& v->c == 0 && v->j + 1 < 4)
 	{
 		e->tab[v->i][v->j + 1] *= 2;
 		e->tab[v->i][v->j] = 0;

@@ -14,7 +14,8 @@
 
 static void		extend_left(t_env *e, t_var *v)
 {
-	if (e->tab[v->i][v->j] == e->tab[v->i][v->j - 1] && e->tab[v->i][v->j] != 0 && v->c == 0 && v->j - 1 > -1)
+	if (e->tab[v->i][v->j] == e->tab[v->i][v->j - 1] && e->tab[v->i][v->j] != 0
+		&& v->c == 0 && v->j - 1 > -1)
 	{
 		e->tab[v->i][v->j - 1] *= 2;
 		e->tab[v->i][v->j] = 0;
@@ -29,6 +30,7 @@ static void		extend_left(t_env *e, t_var *v)
 	}
 	v->j--;
 }
+
 void			in_left(t_env *e)
 {
 	t_var	v;
@@ -39,7 +41,7 @@ void			in_left(t_env *e)
 	{
 		v.j = 0;
 		while (v.j < 4)
-		{	
+		{
 			v.k = v.j;
 			v.c = 0;
 			while (e->tab[v.i][v.j] != 0)
