@@ -1,15 +1,3 @@
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 #include <ncurses.h>
 
 void	draw_borders(WINDOW *screen)
