@@ -6,7 +6,7 @@
 /*   By: tguiter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/01 12:30:36 by tguiter           #+#    #+#             */
-/*   Updated: 2015/03/01 12:31:03 by tguiter          ###   ########.fr       */
+/*   Updated: 2015/03/01 12:33:27 by tguiter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	draw_borders(WINDOW *screen)
 	{
 		mvwprintw(screen, i, 0, "|");
 		mvwprintw(screen, i, x - 1, "|");
-		mvwprintw(screen, i, x/4, "|");
-		mvwprintw(screen, i, (x/4)*2, "|");
-		mvwprintw(screen, i, (x/4)*3, "|");
+		mvwprintw(screen, i, x / 4, "|");
+		mvwprintw(screen, i, (x / 4) * 2, "|");
+		mvwprintw(screen, i, (x / 4) * 3, "|");
 		i++;
 	}
 	i = 1;
@@ -38,9 +38,9 @@ void	draw_borders(WINDOW *screen)
 	{
 		mvwprintw(screen, 0, i, "-");
 		mvwprintw(screen, y - 1, i, "-");
-		mvwprintw(screen, y/4, i, "-");
-		mvwprintw(screen, (y/4)*2, i, "-");
-		mvwprintw(screen, (y/4)*3, i, "-");
+		mvwprintw(screen, y / 4, i, "-");
+		mvwprintw(screen, (y / 4) * 2, i, "-");
+		mvwprintw(screen, (y / 4) * 3, i, "-");
 		i++;
 	}
 }

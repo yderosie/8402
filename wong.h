@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tguiter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/28 18:04:49 by tguiter           #+#    #+#             */
-/*   Updated: 2015/02/28 18:16:07 by tguiter          ###   ########.fr       */
+/*   Created: 2015/03/01 12:58:52 by tguiter           #+#    #+#             */
+/*   Updated: 2015/03/01 13:01:28 by tguiter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ typedef	struct		s_win
 	unsigned int	win_x;
 	unsigned int 	win_y;
 }					t_win;
-/*
+
 typedef	struct		s_inf
 {
 	int				echap;
 	int				redraw;
 }					t_inf;
-*/
+
 typedef struct		s_case
 {
 	int				value;
@@ -52,7 +52,7 @@ typedef	struct		s_env
 {
 	t_const			def;
 	t_win			win;
-//	t_inf			infos;
+	t_inf			infos;
 	t_case			tab[4][4];
 }					t_env;
 
