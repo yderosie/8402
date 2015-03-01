@@ -54,6 +54,7 @@ SRC = ft_atoi.c \
 	  ft_strequ.c \
 	  ft_strnequ.c \
 	  ft_strsub.c \
+	  ft_strsplit.c\
 	  ft_strjoin.c \
 	  ft_strtrim.c \
 	  ft_isblank.c \
@@ -70,10 +71,10 @@ SRC = ft_atoi.c \
 	  ft_lstdelone.c\
 	  ft_lstiter.c\
 	  ft_lstnew.c\
-	  ft_strsplit.c\
 	  ft_lstmap.c\
 	  ft_lstpushback.c\
 	  ft_strnjoin.c\
+	  get_next_line.c\
 	  ft_strdel.c
 
 OBJ = $(SRC:.c=.o)
@@ -83,12 +84,31 @@ CFLAGS += -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		ar -rcs $(NAME) $?
+		@echo "\033[33;1m"
+		@echo -n '---> Creating the Libft... <---'
+		@echo "\033[0m"
+		@echo "\033[31;1m"
+		@echo -n '---> Compilation in progress NOW... <---'
+		@echo "\033[0m"
+		@gcc -c $(CFLAGS) $(SRC)
+		ar -rc $(NAME) $(OBJ)
+		@echo "\033[1;32m"
+		@echo -n '---> Compilation DONE ! <---'
+		@echo "\033[0m"
 
 clean:
 		@rm -f *.o
+		@echo "\033[1;34m"
+		@echo -n '---> Rule clean OK ! <---'
+		@echo "\033[0m"
 
 fclean: clean
 		@rm -f $(NAME)
+		@echo "\033[1;34m"
+		@echo -n '---> Rule fclean OK ! <---'
+		@echo "\033[0m"
 
 re: fclean all
+		@echo "\033[1;34m"
+		@echo -n '---> Rule re OK ! <---'
+		@echo "\033[0m"
