@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "deplacement.h"
+#include "deplacement.h"
 
-void	ft_test(t_env *e)
+static void	ft_test(t_env *e)
 {
 	int		i;
 	int		j;
@@ -29,147 +29,29 @@ void	ft_test(t_env *e)
 	}
 }
 
-void	in_right(t_env *e)
+static int	verif(t_env *e)
 {
-	int 	i;
-	int 	j;
-	int 	k;
-	int 	c;
-
-	i = 3;
-	while (i > -1)
-	{
-		j = 3;
-		while (j > -1)
-		{
-			k = j;
-			c = 0;
-			while (e->tab[i][j] != 0)
-			{
-				
-				if (e->tab[i][j] == e->tab[i][j + 1] && e->tab[i][j] != 0 && c == 0 && j + 1 < 4)
-				{
-					e->tab[i][j + 1] *= 2;
-					e->tab[i][j] = 0;
-					c++;
-				}
-				if (e->tab[i][j + 1] == 0 && j + 1 < 4)
-				{
-					e->tab[i][j + 1] = e->tab[i][j];
-					e->tab[i][j] = 0;
-				}
-				j++;
-			}
-			j = k;
-			j--;
-		}
-		i--;
-	}
-}
-
-void	in_bot(t_env *e)
-{
-	int 	i;
-	int 	j;
+	int		i;
+	int		j;
 	int 	k;
 
-	i = 3;
-	while (i > -1)
-	{
-		j = 3;
-		while (j > -1)
-		{
-			k = i;
-			while (e->tab[i][j] != 0)
-			{
-				if (e->tab[i][j] == e->tab[i + 1][j] && e->tab[i][j] != 0 && i + 1 < 4)
-				{
-					e->tab[i + 1][j] *= 2;
-					e->tab[i][j] = 0;
-				}
-				if (e->tab[i + 1][j] == 0 && i + 1 < 4)
-				{
-					e->tab[i + 1][j] = e->tab[i][j];
-					e->tab[i][j] = 0;
-				}
-				i++;
-			}
-			i = k;
-			j--;
-		}
-		i--;
-	}
-}
-
-void	in_top(t_env *e)
-{
-	int 	i;
-	int 	j;
-	int 	k;
-
+	k = 0;
 	i = 0;
-	while (i < 4)
+	while (i != 4)
 	{
 		j = 0;
-		while (j < 4)
-		{	
-			k = i;
-			while (e->tab[i][j] != 0)
-			{
-				if (e->tab[i][j] == e->tab[i - 1][j] && e->tab[i][j] != 0 && i - 1 > -1)
-				{
-					e->tab[i - 1][j] *= 2;
-					e->tab[i][j] = 0;
-				}
-				if (e->tab[i - 1][j] == 0 && i - 1 > -1)
-				{
-					e->tab[i - 1][j] = e->tab[i][j];
-					e->tab[i][j] = 0;
-				}
-				i--;
-			}
-			i = k;
-			j++;
+		while (j != 4)
+		{
+			if (e->tab[i][j++] != 0)
+				k++;
 		}
 		i++;
 	}
+	if (k == 16)
+		return (1);
+	else
+		return (0);
 }
-
-void	in_left(t_env *e)
-{
-	int 	i;
-	int 	j;
-	int 	k;
-
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{	
-			k = j;
-			while (e->tab[i][j] != 0)
-			{
-				if (e->tab[i][j] == e->tab[i][j - 1] && e->tab[i][j] != 0 && j - 1 > -1)
-				{
-					e->tab[i][j - 1] *= 2;
-					e->tab[i][j] = 0;
-				}
-				if (e->tab[i][j - 1] == 0 && j - 1 > -1)
-				{
-					e->tab[i][j - 1] = e->tab[i][j];
-					e->tab[i][j] = 0;
-				}
-				j--;
-			}
-			j = k;
-			j++;
-		}
-		i++;
-	}
-}
-
-void	verif(t_env *e)
 
 void	ft_random(t_env *e)
 {
@@ -187,18 +69,15 @@ void	ft_random(t_env *e)
 	i = i % 4;
 	if (e->tab[l][i] == 0)
 		e->tab[l][i] = m;
-	else
+	else if (verif(e) == 0)
 		ft_random(e);
 }
 
 int		main(void)
 {
 	t_env	e;
-	int		i;
 	int		j;
 	int		k;
-	int		l;
-	int		m;
 	int		n;
 	int		o;
 
@@ -207,6 +86,7 @@ int		main(void)
 	keypad(stdscr, TRUE);
 	srand(time(NULL));
 	n = 0;
+	e.all = 0;
 	while (n < 2)
 	{
 		ft_random(&e);
@@ -214,72 +94,29 @@ int		main(void)
 	}
 	while (1)
 	{
-		i = 0;
-		m = 0;
-		l = 0;
 		o = getch();
 		if (KEY_DOWN == o)
 		{
 			in_bot(&e);
-			m = rand() % (0 - 2);
-			if (m == 0)
-				m = 2;
-			if (m == 1)
-				m = 4;
-			i = rand() % (0 - 16);
-			l = i / 4;
-			i = i % 4;
-			if (e.tab[l][i] == 0)
-				e.tab[l][i] = m;
-			else
+			if (e.all > 0)
 				ft_random(&e);
 		}
 		if (KEY_UP == o)
 		{
 			in_top(&e);
-			m = rand() % (0 - 2);
-			if (m == 0)
-				m = 2;
-			if (m == 1)
-				m = 4;
-			i = rand() % (0 - 16);
-			l = i / 4;
-			i = i % 4;
-			if (e.tab[l][i] == 0)
-				e.tab[l][i] = m;
-			else
+			if (e.all > 0)
 				ft_random(&e);
 		}
 		if (KEY_LEFT == o)
 		{
 			in_left(&e);
-			m = rand() % (0 - 2);
-			if (m == 0)
-				m = 2;
-			if (m == 1)
-				m = 4;
-			i = rand() % (0 - 16);
-			l = i / 4;
-			i = i % 4;
-			if (e.tab[l][i] == 0)
-				e.tab[l][i] = m;
-			else
+			if (e.all > 0)
 				ft_random(&e);
 		}
 		if (KEY_RIGHT == o)
 		{
 			in_right(&e);
-			m = rand() % (0 - 2);
-			if (m == 0)
-				m = 2;
-			if (m == 1)
-				m = 4;
-			i = rand() % (0 - 16);
-			l = i / 4;
-			i = i % 4;
-			if (e.tab[l][i] == 0)
-				e.tab[l][i] = m;
-			else
+			if (e.all > 0)
 				ft_random(&e);
 		}
 		if (o != 0)
